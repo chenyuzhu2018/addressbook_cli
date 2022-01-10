@@ -104,6 +104,60 @@ body{
 	text-align: center;
 }
 
+input {
+	outline: none
+}
+
+input[type=text] {
+	padding: 3px 6px;
+	font-size: 1.2rem;
+	border: 1px solid #ccc;
+	transition: .3s ease-out;
+}
+
+input[type=text]:focus {
+	border-color: #0090d3;
+	transition: .3s ease-in;
+}
+
+button {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 10px 30px;/*上内边距和下内边距是 10px右内边距和左内边距是 30px*/
+	background: #0090d3;
+	color: #fff;
+	border: 1px solid #0090d3;
+	border-radius: 3px;	
+	outline: 0;
+	transition: .4s ease-out;
+}
+
+button:hover,
+button:focus {
+	opacity: 0.8;
+	cursor: pointer;
+	transition: .15s ease-in;
+}
+
+.form-group > label {
+	display: inline-block;
+	padding-right: 1rem;
+	width: 5rem;
+	text-align: right;
+}
+
+.form-group > input,
+.form-group > select {
+	display: inline-block;
+	height: 1.8rem;
+	line-height: 1.8rem;
+  width: 15rem;
+  margin-top: 0.5rem;
+}
+
+.text-center {
+	text-align: center;
+}
 .dialog {
 	width: 480px;
 	position: fixed;
@@ -128,7 +182,7 @@ body{
 /*overflow 属性规定当内容溢出元素框时发生的事情*/
 .dialog-active ~ .dialog-overlay {
 	opacity: 1;
-	visibility: hidden;
+	visibility: visible;
 }
 
 .dialog-content {
