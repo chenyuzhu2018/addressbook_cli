@@ -60,7 +60,8 @@ export default {
 
   methods: {
     close: function () {
-      this.dialogShow = false;
+      //this.dialogShow = false;
+      this.$emit("close-dialog");
     },
     save: function () {
       if (this.mode === 1) {

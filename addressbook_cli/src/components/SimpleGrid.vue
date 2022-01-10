@@ -24,8 +24,7 @@
       </tbody>
     </table>
     <div class="container">
-      <button @click="openNewItemDialog('添加新联系人')">添加联系人</button>
-      <button v-on:click="openNewItemDialog('添加新联系人')">添加联系人1</button>
+      <button v-on:click="openNewItemDialog('添加新联系人')">添加联系人</button>
     </div>
 
     <modal-dialog
@@ -35,6 +34,7 @@
       :item="item"
       :dialog-show="dlgShow"
       v-on:create-item="createItem"
+      v-on:close-dialog="closeDialog"
     >
     </modal-dialog>
   </div>
@@ -78,14 +78,22 @@ export default {
     },
     createItem: function () {
       // 将item追加到dataList
-      this.dataList.push(this.item);
+      if (this.item.名字!=null && this.item.电话号!=null && this.item.性别!=null)
+      {
+        this.dataList.push(this.item);
+      }
+
       // 创建联系人到服务端
-      this.createPeople(); // 回调函数里面的this 是什么和下面的区别
+      //this.createPeople(); // 回调函数里面的this 是什么和下面的区别
       // 广播事件，传入参数false表示隐藏对话框
       //this.$broadcast('showDialog', false)
       //this.$root.eventHub.$emit("show-dialog", false);
       this.dlgShow = false;
       // 新建完数据后，重置item对象
+      this.item = {};
+    },
+    closeDialog: function(){
+      this.dlgShow = false;
       this.item = {};
     },
     deleteItem: function (people) {
@@ -98,12 +106,12 @@ export default {
       });
       this.dlgShow = false;
       //从服务端删除
-      var resource = this.$resource(this.removePeopleUrl);
-      let vm = this;
+      // var resource = this.$resource(this.removePeopleUrl);
+      // let vm = this;
 
-      resource.remove({ id: customer.customerId }).then((response) => {
-        //vm.getCustomers()
-      });
+      // resource.remove({ id: customer.customerId }).then((response) => {
+      //   //vm.getCustomers()
+      // });
     },
     createPeople: function () {
       var resource = this.$resource(this.creatPeopleUrl);
@@ -117,7 +125,7 @@ export default {
   computed: {
     filterdPeople: function () {
       var self = this;
-      return self.dataList.filter(function (dataList) {
+      return this.dataList.filter(function (dataList) {
         return dataList.名字.indexOf(self.searchKey) !== -1;
       });
     },
