@@ -19,6 +19,8 @@
 
 <script>
 import SimpleGrid from './components/SimpleGrid.vue'
+import axios from 'axios'
+//import VueAxios from 'vue-axios'
 
 export default {
   name: "App",
@@ -42,41 +44,53 @@ export default {
         dataSource: ["男", "女"],
       },
     ],
-    people: [
-      {
-        名字: "秦国海",
-        电话号: 1231231,
-        性别: "男",
-      },
-      {
-        名字: "赵孝军",
-        电话号: 12313,
-        性别: "男",
-      },
-    ],
+    people: [],
+    // people: [
+    //   {
+    //     名字: "秦国海",
+    //     电话号: 1231231,
+    //     性别: "男",
+    //   },
+    //   {
+    //     名字: "赵孝军",
+    //     电话号: 12313,
+    //     性别: "男",
+    //   },
+    // ],
     apiUrl: "http://211.149.193.19:8080/api/getPepples",
+    apiUrlTest: '/data.json'
   }
 },
-  ready: function () {
+  created () {
     // 加载通讯录时所有人
-    this.getPeoples();
+    //this.getPeoples();
+    axios.get(this.apiUrlTest).then((response)=>{
+        this.people = response
+      }).catch((response)=>{
+        console.log(response);
+      })
   },
   methods: {
     getPeoples: function () {
-      var resource = this.$resource(this.apiUrl);
-      let vm = this;
+      axios.get(apiUrlTest).then((response)=>{
+        this.people = response
+      }).catch((response)=>{
+        console.log(response);
+      })
+      // var resource = this.$resource(this.apiUrl);
+      // let vm = this;
 
-      resource
-        .get()
-        .then((response) => {
-          //vm.$set("people", response.data);
-          people = response.data
-        })
-        .catch(function (response) {
-          console.log(response);
-        });
-    },
-  },
+      // resource
+      //   .get()
+      //   .then((response) => {
+      //     //vm.$set("people", response.data);
+      //     people = response.data
+      //   })
+      //   .catch(function (response) {
+      //     console.log(response);
+      //   });
+    }
+  }
 };
 </script>
 
