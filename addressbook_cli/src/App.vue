@@ -32,43 +32,44 @@ export default {
     searchQuery: "",
     columns: [
       {
-        name: "名字",
+        name: "name",
         isKey: true,
       },
       {
-        name: "电话号",
+        name: "telephone",
       },
       {
-        name: "性别",
+        name: "gender",
         dataSource: ["男", "女"],
       },
     ],
     people: [],
-    // peopleTmp: [
-    //   {
-    //     名字: "秦国海",
-    //     电话号: 1231231,
-    //     性别: "男",
-    //   },
-    //   {
-    //     名字: "赵孝军",
-    //     电话号: 12313,
-    //     性别: "男",
-    //   },
-    // ],
+    peopleTmp: [
+      {
+        name: "秦国海",
+        telephone: 1231231,
+        gender: "男",
+      },
+      {
+        name: "赵孝军",
+        telephone: 12313,
+        gender: "男",
+      },
+    ],
     apiUrl: "http://211.149.193.19:8080/api/getPepples",
     apiUrlTest: '/baidu',
     apiUrlTest1: 'https://www.baidu.com'
   }
 },
   created () {
+    this.people = this.peopleTmp
     // 加载通讯录时所有人
     //this.getPeoples();
-    axios.get(this.apiUrlTest).then((response)=>{
-        this.people = response
-      }).catch((response)=>{
-        console.log(response);
-      })
+    // axios.get(this.apiUrlTest).then((response)=>{
+    //     this.people = response
+    //   }).catch((response)=>{
+    //     console.log(response);
+    //   })
   },
   methods: {
     getPeoples: function () {

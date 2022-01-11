@@ -3,9 +3,9 @@
     <table>
       <thead>
         <tr>
-          <th v-for="(col, index) of columns" :key="index">
-            {{ col.name }}
-          </th>
+          <th>名字</th>
+          <th>电话号</th>
+          <th>性别</th>
           <th>删除</th>
         </tr>
       </thead>
@@ -79,7 +79,7 @@ export default {
     },
     createItem: function () {
       // 将item追加到dataList
-      if (this.item.名字!=null && this.item.电话号!=null && this.item.性别!=null)
+      if (this.item.name!=null && this.item.telephone!=null && this.item.gender!=null)
       {
         this.dataList.push(this.item);
       }
@@ -127,7 +127,7 @@ export default {
     filterdPeople: function () {
       var self = this;
       return this.dataList.filter(function (dataList) {
-        return dataList.名字.indexOf(self.searchKey) !== -1;
+        return dataList.name.indexOf(self.searchKey) !== -1;
       });
     },
   },
