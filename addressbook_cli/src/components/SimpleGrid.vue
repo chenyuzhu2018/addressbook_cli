@@ -42,6 +42,7 @@
 
 <script>
 import ModalDialog from './ModalDialog.vue'
+import axios from 'axios'
 
 export default {
   name: "GridTemplate",

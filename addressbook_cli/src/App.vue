@@ -20,7 +20,6 @@
 <script>
 import SimpleGrid from './components/SimpleGrid.vue'
 import axios from 'axios'
-//import VueAxios from 'vue-axios'
 
 export default {
   name: "App",
@@ -45,7 +44,7 @@ export default {
       },
     ],
     people: [],
-    // people: [
+    // peopleTmp: [
     //   {
     //     名字: "秦国海",
     //     电话号: 1231231,
@@ -58,7 +57,8 @@ export default {
     //   },
     // ],
     apiUrl: "http://211.149.193.19:8080/api/getPepples",
-    apiUrlTest: '/data.json'
+    apiUrlTest: '/baidu',
+    apiUrlTest1: 'https://www.baidu.com'
   }
 },
   created () {
