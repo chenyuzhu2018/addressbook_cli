@@ -1,4 +1,4 @@
-# addressbook_cli
+# 通讯录手脚架学习记录
 
 > A Vue.js project
 
@@ -20,5 +20,5 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-
-1、
+## 学习记录
+- 1、for in  循环在java是元素在JavaScript中是下标

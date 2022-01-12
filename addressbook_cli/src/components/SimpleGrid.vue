@@ -13,7 +13,7 @@
         <!--
         <tr v-for="(index,entry) in dataList | filterBy searchKey">
         -->
-        <tr v-for="(people, index) in filterdPeople" :key="index">
+        <tr v-for="(people, index) in dataList" :key="index">
           <td v-for="(col, index) in columns" :key="index">
             {{ people[col.name] }}
           </td>

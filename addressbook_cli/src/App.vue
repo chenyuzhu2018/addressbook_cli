@@ -44,32 +44,58 @@ export default {
       },
     ],
     people: [],
-    peopleTmp: [
-      {
-        name: "秦国海",
-        telephone: 1231231,
-        gender: "男",
-      },
-      {
-        name: "赵孝军",
-        telephone: 12313,
-        gender: "男",
-      },
-    ],
+    // peopleTmp: [
+    //   {
+    //     name: "秦国海",
+    //     telephone: 1231231,
+    //     gender: "男",
+    //   },
+    //   {
+    //     name: "赵孝军",
+    //     telephone: 12313,
+    //     gender: "男",
+    //   },
+    // ],
     apiUrl: "http://211.149.193.19:8080/api/getPepples",
-    apiUrlTest: '/baidu',
-    apiUrlTest1: 'https://www.baidu.com'
+    apiUrlTest: '/getPepples',
+    apiUrlTest1: 'http://127.0.0.1:8090'
   }
 },
   created () {
-    this.people = this.peopleTmp
+    //this.people = this.peopleTmp
     // 加载通讯录时所有人
     //this.getPeoples();
-    // axios.get(this.apiUrlTest).then((response)=>{
-    //     this.people = response
-    //   }).catch((response)=>{
-    //     console.log(response);
-    //   })
+    axios.get(this.apiUrlTest).then((response)=>{
+        if (response.data == undefined)
+        {
+          return
+        }
+        //this.people = response.data
+        var arr = response.data
+        for (let i in arr)
+        //for (let i = 0; i < arr.length; i++)
+        {
+          var person = new Object();
+          person.id = arr[i].id;
+          person.name = arr[i].name;
+          person.telephone =arr[i].telephone;
+          person.gender = arr[i].gender;
+          //var person = new Object();
+          // person.id = arr[i].id;
+          // person.name = arr[i].name;
+          // person.telephone = arr[i].telephone;
+          // person.gender = arr[i].gender;
+          // var person = new Object();
+          // person.id = 1;
+          // person.name = "qwe";
+          // person.telephone = 1233;
+          // person.gender = "男";
+          this.people.push(person);
+        }
+
+      }).catch((response)=>{
+        console.log(response);
+      })
   },
   methods: {
     getPeoples: function () {

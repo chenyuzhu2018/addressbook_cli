@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/baidu': {
-        target: 'https://www.baidu.com',
+      '/getPepples': {
+        target: 'http://localhost:8090/',
         changeOrigin: true,
         pathRewrite:{
-          '^/baidu': ''
+          '^/getPepples': '/getPepples'
         }
       }
     },
