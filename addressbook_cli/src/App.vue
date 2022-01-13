@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import SimpleGrid from './components/SimpleGrid.vue'
+import SimpleGrid from '@/components/SimpleGrid.vue'
 import axios from 'axios'
 
 export default {
