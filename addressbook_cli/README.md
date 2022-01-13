@@ -22,3 +22,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 学习记录
 - 1、for in  循环在java是元素在JavaScript中是下标
+- 2、
