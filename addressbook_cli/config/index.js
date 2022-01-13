@@ -17,6 +17,20 @@ module.exports = {
         pathRewrite:{
           '^/getPepples': '/getPepples'
         }
+      },
+      '/removePepple/*': {
+        target: 'http://localhost:8090/',
+        changeOrigin: true,
+        pathRewrite:{
+          '^/removePepple': '/removePepple'
+        }
+      },
+      '/addPeople': {
+        target: 'http://localhost:8090/',
+        changeOrigin: true,
+        pathRewrite:{
+          '^/addPeople': '/addPeople'
+        }
       }
     },
 

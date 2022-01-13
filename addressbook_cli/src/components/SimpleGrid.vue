@@ -13,7 +13,7 @@
         <!--
         <tr v-for="(index,entry) in dataList | filterBy searchKey">
         -->
-        <tr v-for="(people, index) in dataList" :key="index">
+        <tr v-for="(people, index) in filterdPeople" :key="index">
           <td v-for="(col, index) in columns" :key="index">
             {{ people[col.name] }}
           </td>
@@ -54,9 +54,7 @@ export default {
       mode: 0,
       title: "",
       item: {},
-      dlgShow: false,
-      creatPeopleUrl: "http://211.149.193.19:8080/api/creatPeople",
-      removePeopleUrl: "http://211.149.193.19:8080/api/removePeople",
+      dlgShow: false
     };
   },
   props: ["dataList", "columns", "searchKey"],
@@ -81,14 +79,8 @@ export default {
       // 将item追加到dataList
       if (this.item.name!=null && this.item.telephone!=null && this.item.gender!=null)
       {
-        this.dataList.push(this.item);
+        this.$emit("create-people", this.item);
       }
-
-      // 创建联系人到服务端
-      //this.createPeople(); // 回调函数里面的this 是什么和下面的区别
-      // 广播事件，传入参数false表示隐藏对话框
-      //this.$broadcast('showDialog', false)
-      //this.$root.eventHub.$emit("show-dialog", false);
       this.dlgShow = false;
       // 新建完数据后，重置item对象
       this.item = {};
@@ -98,30 +90,8 @@ export default {
       this.item = {};
     },
     deleteItem: function (people) {
-      var data = this.dataList;
-      data.forEach(function (item, i) {
-        if (item === people) {
-          data.splice(i, 1);
-          return;
-        }
-      });
-      this.dlgShow = false;
-      //从服务端删除
-      // var resource = this.$resource(this.removePeopleUrl);
-      // let vm = this;
-
-      // resource.remove({ id: customer.customerId }).then((response) => {
-      //   //vm.getCustomers()
-      // });
-    },
-    createPeople: function () {
-      var resource = this.$resource(this.creatPeopleUrl);
-      vm = this;
-      resource.save(vm.creatPeopleUrl, vm.item).then((response) => {
-        //vm.$set('item', {})
-        //vm.getCustomers()
-      });
-    },
+      this.$emit("delete-people", people);
+    }
   },
   computed: {
     filterdPeople: function () {

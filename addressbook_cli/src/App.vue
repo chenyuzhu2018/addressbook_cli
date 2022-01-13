@@ -11,6 +11,8 @@
         :data-list="people"
         :columns="columns"
         :search-key="searchQuery"
+        v-on:delete-people="deletePeople"
+        v-on:create-people="createPeople"
       >
       </simple-grid>
     </div>
@@ -44,78 +46,68 @@ export default {
       },
     ],
     people: [],
-    // peopleTmp: [
-    //   {
-    //     name: "秦国海",
-    //     telephone: 1231231,
-    //     gender: "男",
-    //   },
-    //   {
-    //     name: "赵孝军",
-    //     telephone: 12313,
-    //     gender: "男",
-    //   },
-    // ],
-    apiUrl: "http://211.149.193.19:8080/api/getPepples",
-    apiUrlTest: '/getPepples',
-    apiUrlTest1: 'http://127.0.0.1:8090'
+    apiUrlGetPepples: '/getPepples',
+    apiUrlRemovePepple: '/removePepple',
+    apiUrlAddPepple: '/addPeople'
   }
 },
   created () {
-    //this.people = this.peopleTmp
     // 加载通讯录时所有人
-    //this.getPeoples();
-    axios.get(this.apiUrlTest).then((response)=>{
+    this.getPeoples();
+  },
+  methods: {
+    getPeoples: function () {
+
+      axios.get(this.apiUrlGetPepples).then((response)=>{
         if (response.data == undefined)
         {
           return
         }
-        //this.people = response.data
+        this.people = []
         var arr = response.data
         for (let i in arr)
-        //for (let i = 0; i < arr.length; i++)
         {
           var person = new Object();
           person.id = arr[i].id;
           person.name = arr[i].name;
           person.telephone =arr[i].telephone;
-          person.gender = arr[i].gender;
-          //var person = new Object();
-          // person.id = arr[i].id;
-          // person.name = arr[i].name;
-          // person.telephone = arr[i].telephone;
-          // person.gender = arr[i].gender;
-          // var person = new Object();
-          // person.id = 1;
-          // person.name = "qwe";
-          // person.telephone = 1233;
-          // person.gender = "男";
+          person.gender = arr[i].gender
           this.people.push(person);
         }
 
       }).catch((response)=>{
         console.log(response);
       })
-  },
-  methods: {
-    getPeoples: function () {
-      axios.get(apiUrlTest).then((response)=>{
-        this.people = response
+    },
+    deletePeople: function (people) {
+      let removePeppleUrl = this.apiUrlRemovePepple + '/' + people.id
+      let vm = this
+      axios.get(removePeppleUrl).then((response)=>{
+        vm.getPeoples()
       }).catch((response)=>{
         console.log(response);
       })
-      // var resource = this.$resource(this.apiUrl);
-      // let vm = this;
-
-      // resource
-      //   .get()
-      //   .then((response) => {
-      //     //vm.$set("people", response.data);
-      //     people = response.data
-      //   })
-      //   .catch(function (response) {
-      //     console.log(response);
-      //   });
+      
+      //var data = this.people;
+      // data.forEach(function (item, i) {
+      //   if (item === people) {
+      //     data.splice(i, 1);
+      //     return;
+      //   }
+      // });
+    },
+    createPeople: function (people) {
+      let vm = this
+      let jsonBody = {};
+      jsonBody.id = -1
+      jsonBody.name = people.name
+      jsonBody.telephone = people.telephone
+      jsonBody.gender = people.gender
+      axios.post(this.apiUrlAddPepple, jsonBody).then((response)=>{
+        vm.getPeoples()
+      }).catch((response)=>{
+        console.log(response);
+      })
     }
   }
 };
