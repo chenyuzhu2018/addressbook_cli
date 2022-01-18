@@ -49,9 +49,9 @@ export default {
       },
     ],
     people: [],
-    apiUrlGetPepples: '/getPepples',
-    apiUrlRemovePepple: '/removePepple',
-    apiUrlAddPepple: '/addPeople'
+    apiUrlGetPepples: '/getAllUser',
+    apiUrlRemovePepple: '/deleteUserByID',
+    apiUrlAddPepple: '/addUserByUserObj'
   }
 },
   created () {
@@ -73,8 +73,8 @@ export default {
           var person = new Object();
           person.id = arr[i].id;
           person.name = arr[i].name;
-          person.telephone =arr[i].telephone;
-          person.gender = arr[i].gender
+          person.telephone =arr[i].phone;
+          person.gender = arr[i].sex
           this.people.push(person);
         }
 
@@ -85,7 +85,7 @@ export default {
     deletePeople: function (people) {
       let removePeppleUrl = this.apiUrlRemovePepple + '/' + people.id
       let vm = this
-      axios.get(removePeppleUrl).then((response)=>{
+      axios.delete(removePeppleUrl).then((response)=>{
         vm.getPeoples()
       }).catch((response)=>{
         console.log(response);
@@ -104,8 +104,8 @@ export default {
       let jsonBody = {};
       jsonBody.id = -1
       jsonBody.name = people.name
-      jsonBody.telephone = people.telephone
-      jsonBody.gender = people.gender
+      jsonBody.phone = people.telephone
+      jsonBody.sex = people.gender
       axios.post(this.apiUrlAddPepple, jsonBody).then((response)=>{
         vm.getPeoples()
       }).catch((response)=>{

@@ -11,26 +11,17 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/getPepples': {
-        target: 'http://localhost:8090/',
-        changeOrigin: true,
-        pathRewrite:{
-          '^/getPepples': '/getPepples'
-        }
+      '/getAllUser': {
+        target: 'http://qingh-a-P1:8080/user/',
+        changeOrigin: true
       },
-      '/removePepple/*': {
-        target: 'http://localhost:8090/',
-        changeOrigin: true,
-        pathRewrite:{
-          '^/removePepple': '/removePepple'
-        }
+      '/deleteUserByID': {
+        target: 'http://qingh-a-P1:8080/user/',
+        changeOrigin: true
       },
-      '/addPeople': {
-        target: 'http://localhost:8090/',
-        changeOrigin: true,
-        pathRewrite:{
-          '^/addPeople': '/addPeople'
-        }
+      '/addUserByUserObj': {
+        target: 'http://qingh-a-P1:8080/user',
+        changeOrigin: true
       }
     },
 
