@@ -1,25 +1,25 @@
 # 通讯录手脚架学习记录
 
-> A Vue.js project
+### 安装node
 
-## Build Setup
+### 安装cli
 
-``` bash
-# install dependencies
-npm install
+### 遇到的问题
+1、无法在vscode终端下执行npm命令下图，
+![问题1](学习日志/问题1.jpg)
 
-# serve with hot reload at localhost:8080
-npm run dev
+解决办法：
+试了很多办法包括
+管理员运行
+更新node版本
+添加环境变量
 
-# build for production with minification
-npm run build
+然鹅都不行
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+真正解决办法：
+新建一个终端就好了，，，，，，，下图
+![问题1](学习日志/微信截图_20220113143352.png)
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-## 学习记录
+### 学习记录
 - 1、for in  循环在java是元素在JavaScript中是下标
 - 2、
