@@ -3,10 +3,12 @@
     <table>
       <thead>
         <tr>
-          <th>名字</th>
-          <th>电话号</th>
-          <th>性别</th>
-          <th>删除</th>
+          <th v-for="(col, index) in columns" :key="index">
+            {{ col.displayName }}
+          </th>
+          <th>
+            删除
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +44,6 @@
 
 <script>
 import ModalDialog from './ModalDialog.vue'
-import axios from 'axios'
 
 export default {
   name: "GridTemplate",

@@ -7,7 +7,7 @@
         </header>
         <div class="dialog-body">
           <div v-for="(field, index) in fields" class="form-group" :key="index">
-            <label>{{ field.name }}</label>
+            <label>{{ field.displayName }}</label>
             <select v-if="field.dataSource" v-model="item[field.name]">
               <option
                 v-for="(opt, index) in field.dataSource"

@@ -35,13 +35,16 @@ export default {
     columns: [
       {
         name: "name",
+        displayName: "名字",
         isKey: true,
       },
       {
         name: "telephone",
+        displayName: "电话号",
       },
       {
         name: "gender",
+        displayName: "性别",
         dataSource: ["男", "女"],
       },
     ],
