@@ -2,7 +2,8 @@
 
 ### 项目简介
 *第一个vue学习小项目，简单的通讯录前端实现，实现了显示联系人，创建联系人，删除联系人等功能。*
-
+[前端GitHub上代码地址](https://github.com/chenyuzhu2018/addressbook_cli)
+[服务端GitHub上代码地址](https://github.com/chenyuzhu2018/addressbook_server)
 **主界面**
 ![主界面](学习日志/通讯录主界面.png)
 
